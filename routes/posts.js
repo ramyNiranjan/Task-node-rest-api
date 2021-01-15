@@ -156,7 +156,7 @@ router.get("/:id", getPost);
  *      500:
  *        description: Some error happened
  */
-router.patch("/:id", updatePost);
+router.put("/:id", updatePost);
 /**
  * @swagger
  * /tasks/{id}:
