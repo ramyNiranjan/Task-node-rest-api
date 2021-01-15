@@ -3,10 +3,12 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import swaggerUI from "swagger-ui-express";
-import swaggerSpec from "./swaggerDocs.js";
+import dotenv from "dotenv";
 
+import swaggerSpec from "./swaggerDocs.js";
 import postRoutes from "./routes/posts.js";
 
+dotenv.config();
 const app = express();
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
@@ -16,8 +18,8 @@ app.use(cors());
 
 app.use("/tasks", postRoutes);
 
-const CONNECTION_URL =
-  "mongodb+srv://ramy:Water123@cluster0.fcgn4.mongodb.net/Fend-19?retryWrites=true&w=majority";
+const CONNECTION_URL = process.env.MONGODB_URL;
+console.log(CONNECTION_URL);
 const PORT = process.env.PORT || 5000;
 
 mongoose
